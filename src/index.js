@@ -1,7 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from './components/App';
 import * as serviceWorker from './serviceWorker';
+
+import { createGlobalStyle } from 'styled-components';
+
+createGlobalStyle`
+    @import url('https://fonts.googleapis.com/css?family=Roboto|Big+Shoulders+Text&display=swap');
+    body {
+        margin:0;
+    }
+`
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
