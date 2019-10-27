@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
 import Hightlight from '../components/Highlight';
 import NewReleases from '../components/NewReleases';
+import TitleSection from '../components/TitleSection';
 
-
-const TitleSection = styled.h1`
-    background: rgba(120,144,156,1);
-    color: white;
-    margin: 0;
-    padding: 12px;
-`
 
 export default class HomePage extends Component {
     state = {
@@ -31,8 +24,7 @@ export default class HomePage extends Component {
                 upcomingReleases : upcoming.data.results
             })
         } catch (err) {
-            console.log(err);
-            
+            console.log(err);    
         }
     }
 

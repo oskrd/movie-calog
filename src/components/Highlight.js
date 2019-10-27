@@ -5,7 +5,7 @@ const urlBase = 'https://image.tmdb.org/t/p/'
 const imgSize = 'w780'
 
 const Begin = styled.div`
-    background: url(${props => urlBase+imgSize+props.movie.backdrop_path}) no-repeat;
+    background: url(${props => urlBase + imgSize + props.movie.backdrop_path}) no-repeat;
     background-size: cover;
     height: 600px;
     color: white;
@@ -40,15 +40,27 @@ const AverageRate = styled.span`
     color:rgba(100,221,23,1);
     font-family: 'Cinzel', serif;
 `
+const Loading = styled.div`
+    text-align: center;
+    font-size: 22px;
+`
 
-export default ({movie}) => (
-    <Begin movie={movie}>
-        <MovieInfo>
-            <MovieInfoContent>
-                <MovieInfoTitle>{movie.title}</MovieInfoTitle>
-                <MovieInfoOverview>{movie.overview}</MovieInfoOverview>
-                <AverageRate>{movie.vote_average}/10</AverageRate>
-            </MovieInfoContent>
-        </MovieInfo>
-    </Begin>
-)
+export default ({ movie }) => {
+    if (movie) {
+        return (
+            <Begin movie={movie}>
+                <MovieInfo>
+                    <MovieInfoContent>
+                        <MovieInfoTitle>{movie.title}</MovieInfoTitle>
+                        <MovieInfoOverview>{movie.overview}</MovieInfoOverview>
+                        <AverageRate>{movie.vote_average}/10</AverageRate>
+                    </MovieInfoContent>
+                </MovieInfo>
+            </Begin>
+        );
+    } else {
+        return(
+            <Loading>Loading...</Loading>
+        );
+    }
+}
