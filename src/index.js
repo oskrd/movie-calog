@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import { createGlobalStyle } from 'styled-components';
 
 createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css?family=Roboto|Big+Shoulders+Text&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Roboto|Big+Shoulders+Text|Rock+Salt|Cinzel&display=swap');
     body {
         margin:0;
     }

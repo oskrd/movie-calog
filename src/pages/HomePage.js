@@ -1,16 +1,39 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import Hightlight from '../components/Highlight';
 import NewReleases from '../components/NewReleases';
+
+
+const TitleSection = styled.h1`
+    background: rgba(120,144,156,1);
+    color: white;
+    margin: 0;
+    padding: 12px;
+`
 
 export default class HomePage extends Component {
     state = {
         movies : [],
-        highlightedMovie: ''
+        highlightedMovie: '',
+        upcomingReleases: []
     }
 
     componentDidMount() {
         this.getData();
+        this.getUpcomingReleases();
+    }
+
+    getUpcomingReleases = async () => {
+        try {
+            const upcoming = await axios.get('https://api.themoviedb.org/3/movie/upcoming?api_key=f90ff1daa65420537c600c00b7e593a6');
+            this.setState({
+                upcomingReleases : upcoming.data.results
+            })
+        } catch (err) {
+            console.log(err);
+            
+        }
     }
 
     getData = async () => {
@@ -37,7 +60,10 @@ export default class HomePage extends Component {
         return (
             <div>
                 <Hightlight movie={this.state.highlightedMovie} />
+                <TitleSection> At movie theaters </TitleSection>
                 <NewReleases movies = {this.state.movies} />
+                <TitleSection> Comming Soon</TitleSection>
+                <NewReleases movies = {this.state.upcomingReleases} />
             </div>
         );
     }
